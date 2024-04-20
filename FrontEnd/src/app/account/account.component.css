@@ -1,0 +1,51 @@
+.title {
+    margin-top: 35px;
+    margin-left: 30px;
+    font-size: 24px;
+    margin-bottom: 35px;
+  }
+
+.customer-form-container {
+    margin-left: 80px;
+    margin-right: 80px;
+    background-color: #f9f9f9;
+    border: 3px solid #ddd;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.labels {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px ;
+  }
+
+.input-fields {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+.button {
+    margin-top: 30px;
+    font-size: 18px;
+    background-color: rgb(72, 72, 232);
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+.status-text{
+    width: 50%;
+    padding: 15px;
+    font-size: 16px;
+    border: none;
+    color: rgb(21, 152, 12);
+    margin-left: 80px;
+  }
