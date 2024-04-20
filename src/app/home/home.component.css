@@ -1,18 +1,18 @@
 .search-container {
-    display: flex;
-    justify-content: center;
-  }
+	display: flex;
+	justify-content: center;
+}
 
 .search-input-field {
-    width: 800px; 
-    margin-top: 50px;
-  }
+	width: 800px;
+	margin-top: 50px;
+}
 
-.products{
-    border: 1px solid ;
-    padding: 20px; 
-    border-radius: 5px; 
-    font-weight: bold;
+.products {
+	border: 1px solid;
+	padding: 20px;
+	border-radius: 5px;
+	font-weight: bold;
 }
 /* 
 .product-hover{

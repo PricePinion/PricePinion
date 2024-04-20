@@ -12,13 +12,13 @@
 
 <!-- Product Grid List -->
 <div>
-    <mat-grid-list cols="4"   >       <!-- number of columns on screen to showcase products-->
+    <mat-grid-list cols="4"   >
+        <!-- number of columns on screen to showcase products-->       
         <mat-grid-tile  *ngFor="let product of filteredProducts">
             <!-- <div class="product-hover"> -->
                 <div class="products" >
                     {{ product.pname }}
                 </div>
-
             <!-- </div> -->
         </mat-grid-tile>
       </mat-grid-list>

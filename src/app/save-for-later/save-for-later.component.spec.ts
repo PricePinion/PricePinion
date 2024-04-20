@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { SaveForLaterComponent } from './save-for-later.component';
+import { SaveForLaterComponent } from "./save-for-later.component";
 
-describe('SaveForLaterComponent', () => {
-  let component: SaveForLaterComponent;
-  let fixture: ComponentFixture<SaveForLaterComponent>;
+describe("SaveForLaterComponent", () => {
+	let component: SaveForLaterComponent;
+	let fixture: ComponentFixture<SaveForLaterComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [SaveForLaterComponent]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(SaveForLaterComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
+			declarations: [SaveForLaterComponent],
+		}).compileComponents();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+		fixture = TestBed.createComponent(SaveForLaterComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
+
+	it("should create", () => {
+		expect(component).toBeTruthy();
+	});
 });
