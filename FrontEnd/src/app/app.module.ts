@@ -15,8 +15,8 @@ import { SaveForLaterComponent } from './save-for-later/save-for-later.component
 import { AccountComponent } from './account/account.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { FormsModule } from '@angular/forms';
+import {MatMenuModule} from '@angular/material/menu'
 
 @NgModule({
   declarations: [
@@ -35,7 +35,8 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatGridListModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatMenuModule
   ],
   providers: [
     provideClientHydration(),

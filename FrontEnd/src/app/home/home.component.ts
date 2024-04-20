@@ -11,7 +11,9 @@ export class HomeComponent {
     { pname: 'Kroger Fuji Apples' },
     { pname: 'Natures Basket Bread' },
     { pname: '2% Milk' },
-    { pname: 'Organic Eggs' },
+    { pname: 'Pampers Diaper' },
+    { pname: 'Smartwater' },
+    { pname: 'Reign Storm Peach' },
   ];
 
   filteredProducts: any[] = [...this.dummyProducts]; // Array to hold filtered products by search

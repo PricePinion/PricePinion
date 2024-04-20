@@ -1,13 +1,16 @@
 <mat-toolbar color="primary" class="mat-elevation-z8">
     
     <a mat-button style="font-size: 20px;"  routerLink="Home" >
-        <mat-icon>storefront</mat-icon>PricePinion</a>              <!-- PricePinion/Home -->
+        <mat-icon>storefront</mat-icon>PricePinion</a>                               <!-- PricePinion/Home -->
 
     <div class="nvHeaderSpace"></div>
 
     <a mat-button routerLink="SFL"><mat-icon>favorite</mat-icon>SaveForLater</a>     <!-- SaveForLater -->
 
-    <a mat-button routerLink="Account"><mat-icon>account_circle</mat-icon></a>           <!-- Account -->
+    <mat-menu #accountMenu="matMenu">                                                <!--Account Menu/DropDown-->
+        <button mat-menu-item routerLink="Account">Account</button>
+        <button mat-menu-item  >Logout</button>
+    </mat-menu>
 
-    <a mat-raised-button color="accent" >Logout</a>
+    <a  mat-icon-button [matMenuTriggerFor]="accountMenu" ><mat-icon>account_circle</mat-icon></a>    <!--Account-->
 </mat-toolbar>
