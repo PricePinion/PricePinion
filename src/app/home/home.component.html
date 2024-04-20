@@ -1,0 +1,25 @@
+<!-- Search Field -->
+<div class="search-container">
+    <mat-form-field class="search-input-field">
+        <input matInput placeholder="Search" #searchInput 
+            [(ngModel)]="searchFilter"  
+            (input)="filterProducts(searchInput.value)">
+        <button mat-button matSuffix>
+            <mat-icon>search</mat-icon>
+        </button>
+    </mat-form-field>
+</div>
+
+<!-- Product Grid List -->
+<div>
+    <mat-grid-list cols="4"   >
+        <!-- number of columns on screen to showcase products-->       
+        <mat-grid-tile  *ngFor="let product of filteredProducts">
+            <!-- <div class="product-hover"> -->
+                <div class="products" >
+                    {{ product.pname }}
+                </div>
+            <!-- </div> -->
+        </mat-grid-tile>
+      </mat-grid-list>
+</div>
