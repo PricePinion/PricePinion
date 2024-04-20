@@ -1,16 +1,18 @@
 <mat-toolbar color="primary" class="mat-elevation-z8">
+    <!-- PricePinion/Home -->
+    <a mat-button style="font-size: 20px;" routerLink="Home"><mat-icon>storefront</mat-icon>PricePinion</a>
     
-    <a mat-button style="font-size: 20px;"  routerLink="Home" >
-        <mat-icon>storefront</mat-icon>PricePinion</a>                               <!-- PricePinion/Home -->
-
     <div class="nvHeaderSpace"></div>
-
-    <a mat-button routerLink="SFL"><mat-icon>favorite</mat-icon>SaveForLater</a>     <!-- SaveForLater -->
-
-    <mat-menu #accountMenu="matMenu">                                                <!--Account Menu/DropDown-->
+    
+    <!-- SaveForLater -->
+    <a mat-button routerLink="SFL"><mat-icon>favorite</mat-icon>SaveForLater</a>     
+    
+    <!--Account Menu/DropDown-->
+    <mat-menu #accountMenu="matMenu">                                                
         <button mat-menu-item routerLink="Account">Account</button>
-        <button mat-menu-item  >Logout</button>
+        <button mat-menu-item>Logout</button>
     </mat-menu>
-
-    <a  mat-icon-button [matMenuTriggerFor]="accountMenu" ><mat-icon>account_circle</mat-icon></a>    <!--Account-->
+    
+    <!--Account-->
+    <a  mat-icon-button [matMenuTriggerFor]="accountMenu"><mat-icon>account_circle</mat-icon></a>    
 </mat-toolbar>
