@@ -1,0 +1,24 @@
+<div class="product-details-container">
+    <div class="left-column">
+        <h1><strong>{{this.productName}}</strong></h1>
+        <p>[Image here]</p>
+
+        <button  class="button" type="submit"> Save For Later <mat-icon>favorite</mat-icon> </button>
+    </div>
+
+    <div class="right-column">
+    <table mat-table [dataSource]="tableData" class="table">
+        <!-- defines table columns -->
+        <ng-container *ngFor="let column of tableColumns" [matColumnDef]="column">
+            <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+            <td class="description-cell" mat-cell  *matCellDef="let item">{{ item[column] }}</td>
+        </ng-container>
+
+        <!-- defines table rows -->
+        <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+
+        <!--displays row from tableData under the column names from tableColumns-->
+        <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
+    </table>
+</div>
+</div>

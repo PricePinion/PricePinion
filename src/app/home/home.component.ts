@@ -20,17 +20,13 @@ export class HomeComponent {
 	searchFilter: string = "";
 
 	filterProducts(searchFilter: string): void {
-		console.log(searchFilter);
+
 		if (searchFilter.trim()) {
 			this.filteredProducts = this.dummyProducts.filter((product) =>
 				product.pname.toLowerCase().includes(searchFilter.toLowerCase())
 			);
 		} else {
 			this.filteredProducts = [...this.dummyProducts]; // Display all products
-		}
-		//if no products match the search criteria
-		if (this.filteredProducts.length === 0) {
-			this.filteredProducts.push({ pname: "Product not found!" });
 		}
 	}
 }

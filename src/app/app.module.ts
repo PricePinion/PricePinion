@@ -20,6 +20,10 @@ import { MatGridListModule } from "@angular/material/grid-list";
 import { ReactiveFormsModule } from "@angular/forms";
 import { FormsModule } from "@angular/forms";
 import { MatMenuModule } from "@angular/material/menu";
+import { ProductStoresComponent } from './product-stores/product-stores.component';
+import { MatTableModule } from '@angular/material/table';
+// import { SaveForLaterComponent } from './save-for-later/save-for-later.component';
+
 
 @NgModule({
 	declarations: [
@@ -28,6 +32,7 @@ import { MatMenuModule } from "@angular/material/menu";
 		HomeComponent,
 		SaveForLaterComponent,
 		AccountComponent,
+		ProductStoresComponent
 	],
 	imports: [
 		BrowserModule,
@@ -40,6 +45,7 @@ import { MatMenuModule } from "@angular/material/menu";
 		ReactiveFormsModule,
 		FormsModule,
 		MatMenuModule,
+		MatTableModule
 	],
 	providers: [provideClientHydration(), provideAnimationsAsync()],
 	bootstrap: [AppComponent],
