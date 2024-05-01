@@ -22,7 +22,6 @@ import { FormsModule } from "@angular/forms";
 import { MatMenuModule } from "@angular/material/menu";
 import { ProductStoresComponent } from './product-stores/product-stores.component';
 import { MatTableModule } from '@angular/material/table';
-// import { SaveForLaterComponent } from './save-for-later/save-for-later.component';
 
 
 @NgModule({

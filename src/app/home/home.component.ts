@@ -7,26 +7,30 @@ import { Component } from "@angular/core";
 })
 export class HomeComponent {
 	dummyProducts = [
-		{ pname: "Kroger Honey Crisp Apples" },
-		{ pname: "Kroger Fuji Apples" },
-		{ pname: "Natures Basket Bread" },
-		{ pname: "2% Milk" },
-		{ pname: "Pampers Diaper" },
-		{ pname: "Smartwater" },
-		{ pname: "Reign Storm Peach" },
+		{ pname: "Honeycrisp Apples - 3 Pound Bag", imageUrl:"https://www.kroger.com/product/images/large/front/0001111018189" },
+		{ pname: "Fuji Apples - 3 Pound Bag", imageUrl:"https://www.kroger.com/product/images/large/front/0001111018188"},
+		{ pname: "Sara Lee Artesano Bakery Bread", imageUrl: "https://www.kroger.com/product/images/large/front/0007294561241" },
+		{ pname: "Simple Truth Organic® 2% Reduced Fat Milk", imageUrl: "https://www.kroger.com/product/images/large/front/0001111042902" },
+		{ pname: "Bok Choy", imageUrl: "https://www.kroger.com/product/images/large/front/0000000004545" },
+		{ pname: "Smart Water", imageUrl: "https://www.kroger.com/product/images/large/front/0073262366368" },
+		{ pname: "Kroger® Beef Shaved Steak", imageUrl: "https://www.kroger.com/product/images/large/front/0001111034567" },
 	];
 
-	filteredProducts: any[] = [...this.dummyProducts]; // Array to hold filtered products by search
+	// Array to hold filtered products by search
+	filteredProducts: any[] = [...this.dummyProducts]; 
 	searchFilter: string = "";
 
 	filterProducts(searchFilter: string): void {
+		console.log(searchFilter);
 
-		if (searchFilter.trim()) {
+		if (searchFilter) {
 			this.filteredProducts = this.dummyProducts.filter((product) =>
 				product.pname.toLowerCase().includes(searchFilter.toLowerCase())
 			);
-		} else {
-			this.filteredProducts = [...this.dummyProducts]; // Display all products
+		} 
+		else {
+			this.filteredProducts = [...this.dummyProducts]; 
 		}
+		console.log(this.filteredProducts);
 	}
 }

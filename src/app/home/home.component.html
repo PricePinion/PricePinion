@@ -1,29 +1,37 @@
 <!-- Search Field -->
-<div class="search-container">
-    <mat-form-field class="search-input-field">
-        <input matInput placeholder="Search" #searchInput [(ngModel)]="searchFilter"
-            (input)="filterProducts(searchInput.value)">
-        <button mat-button matSuffix>
-            <mat-icon>search</mat-icon>
-        </button>
-    </mat-form-field>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-8">
+            <div class="input-group search-input-field">
+                <input type="text" class="form-control" placeholder="Search Product" #searchInput  
+                    (input)="filterProducts(searchInput.value)">                             
+            </div>
+        </div>
+    </div>
 </div>
 
-<!-- Product Grid List -->
-<div>
-    <mat-grid-list cols="4">
-        <!-- number of columns on screen to showcase products-->
-        <mat-grid-tile *ngFor="let product of filteredProducts">
 
+<!-- Product grid list using bootStrap grid -->
+<div class="container ">
+     <!-- mt-5 class is margin top/vertical spacing -->
+    <div class="row mt-5">
+        <!-- mb-4 class is margin bottom spacing -->
+        <div class="col-sm-4   mb-4" *ngFor="let product of filteredProducts">
             <!-- Navigation to Product-Stores component on click of a product -->
-            <div class="products">
-                <a [routerLink]="['/Product-Stores', product.pname]">{{ product.pname }}</a>
+            <div class="products text-center">
+                <div>
+                    <a [routerLink]="['/Product-Stores', product.pname]">
+                        <img [src]="product.imageUrl" alt="{{ product.pname }}" class="img-fluid image-property"> <!--image scales appropriately with its parent container-->
+                    </a>
+                </div>
+                <div>
+                    <a [routerLink]="['/Product-Stores', product.pname]">{{ product.pname }}</a>
+                </div>
             </div>
+        </div>
 
-        </mat-grid-tile>
-
-        <mat-grid-tile *ngIf="filteredProducts.length === 0" colspan="4" >
+        <div class="col-sm-12 text-center" *ngIf="filteredProducts.length === 0">
             <div>No products found matching your search criteria. Please try again.</div>
-        </mat-grid-tile>
-    </mat-grid-list>
+        </div>
+    </div>
 </div>

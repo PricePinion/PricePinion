@@ -8,7 +8,7 @@ import { ProductStoresComponent } from './product-stores/product-stores.componen
 const routes: Routes = [
 	{ path: "", component: HomeComponent },
 	{ path: "Home", component: HomeComponent },
-	{ path: "SFL/:productName", component: SaveForLaterComponent },
+	{ path: "SFL", component: SaveForLaterComponent },
 	{ path: "Account", component: AccountComponent },
 	{ path: 'Product-Stores/:productName', component: ProductStoresComponent }
 ];

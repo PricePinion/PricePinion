@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -19,6 +19,9 @@ export class ProductStoresComponent implements OnInit {
 
   // Column Names for the productStore table
   tableColumns: string[] = ['Store', 'Price', 'Description', 'VisitStore'];
+
+  // Event emitter - to pass product name to SaveForLaterComponent by creating a output event/outgoing event
+  @Output() setProductEvent: EventEmitter<string> = new EventEmitter<string>();
 
   // This to activate routes to read param value from home component
   constructor(private route: ActivatedRoute) {
@@ -66,4 +69,11 @@ export class ProductStoresComponent implements OnInit {
 
     });
   }
+
+  // Function to emit product name to SaveForLaterComponent
+  setProduct(productName: string): void {
+    this.setProductEvent.emit(productName);
+    console.log(productName);
+  }
+  
 }

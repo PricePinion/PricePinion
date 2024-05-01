@@ -53,3 +53,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 # Bind html elements to your component to access values of the elements
 ex: [(ngModel)]="searchFilter"
+
+# Bootstrap
+npm install bootstrap
+add the following to angular.json under styles array-
+"src/styles.css",
+"node_modules/bootstrap/dist/css/bootstrap.min.css"
