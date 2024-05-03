@@ -22,6 +22,7 @@ import { FormsModule } from "@angular/forms";
 import { MatMenuModule } from "@angular/material/menu";
 import { ProductStoresComponent } from './product-stores/product-stores.component';
 import { MatTableModule } from '@angular/material/table';
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 @NgModule({
 	declarations: [
@@ -44,7 +45,8 @@ import { MatTableModule } from '@angular/material/table';
 		ReactiveFormsModule,
 		FormsModule,
 		MatMenuModule,
-		MatTableModule
+		MatTableModule,
+		HttpClientModule
 		
 	],
 	providers: [provideClientHydration(), provideAnimationsAsync()],
