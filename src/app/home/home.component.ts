@@ -1,36 +1,47 @@
-import { Component } from "@angular/core";
+import { ProductService } from './../product-service.service';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
 	selector: "app-home",
 	templateUrl: "./home.component.html",
 	styleUrl: "./home.component.css",
 })
-export class HomeComponent {
-	dummyProducts = [
-		{ pname: "Honeycrisp Apples - 3 Pound Bag", imageUrl:"https://www.kroger.com/product/images/large/front/0001111018189" },
-		{ pname: "Fuji Apples - 3 Pound Bag", imageUrl:"https://www.kroger.com/product/images/large/front/0001111018188"},
-		{ pname: "Sara Lee Artesano Bakery Bread", imageUrl: "https://www.kroger.com/product/images/large/front/0007294561241" },
-		{ pname: "Simple Truth Organic® 2% Reduced Fat Milk", imageUrl: "https://www.kroger.com/product/images/large/front/0001111042902" },
-		{ pname: "Bok Choy", imageUrl: "https://www.kroger.com/product/images/large/front/0000000004545" },
-		{ pname: "Smart Water", imageUrl: "https://www.kroger.com/product/images/large/front/0073262366368" },
-		{ pname: "Kroger® Beef Shaved Steak", imageUrl: "https://www.kroger.com/product/images/large/front/0001111034567" },
-	];
+export class HomeComponent implements OnInit {
+	products: any[] = [];
 
 	// Array to hold filtered products by search
-	filteredProducts: any[] = [...this.dummyProducts]; 
+	filteredProducts: any[] = [];
+
+	//Search Bar Filter
 	searchFilter: string = "";
+	constructor(private productService: ProductService) { }
 
-	filterProducts(searchFilter: string): void {
-		console.log(searchFilter);
+	ngOnInit(): void {
+		this.getProducts();
+	}
 
-		if (searchFilter) {
-			this.filteredProducts = this.dummyProducts.filter((product) =>
-				product.pname.toLowerCase().includes(searchFilter.toLowerCase())
+	getProducts() {
+		this.productService.getProducts()
+			.subscribe({
+				next: (response) => {
+					this.products = response;
+					this.filteredProducts = [...this.products];
+				},
+				error: (error) => {
+					console.error('Error fetching products:', error);
+				}
+			});
+	}
+
+	filterProducts(): void {
+		console.log('In function:', this.searchFilter);
+
+		if (this.searchFilter && this.products) {
+			this.filteredProducts = this.products.filter((product) =>
+				product.productName.toLowerCase().includes(this.searchFilter)
 			);
-		} 
-		else {
-			this.filteredProducts = [...this.dummyProducts]; 
+		} else {
+			this.filteredProducts = [...this.products];
 		}
-		console.log(this.filteredProducts);
 	}
 }

@@ -1,11 +1,15 @@
+
 <!-- Search Field -->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-sm-8">
             <div class="input-group search-input-field">
-                <input type="text" class="form-control" placeholder="Search Product" #searchInput  
-                    (input)="filterProducts(searchInput.value)">                             
+                <input [(ngModel)]="searchFilter" type="text" class="form-control" placeholder="Search Product"  
+                    (input)="filterProducts()">     
             </div>
+            
+            <p>Searched Value is:  {{ searchFilter }}</p> 
+            
         </div>
     </div>
 </div>
@@ -20,12 +24,12 @@
             <!-- Navigation to Product-Stores component on click of a product -->
             <div class="products text-center">
                 <div>
-                    <a [routerLink]="['/Product-Stores', product.pname]">
-                        <img [src]="product.imageUrl" alt="{{ product.pname }}" class="img-fluid image-property"> <!--image scales appropriately with its parent container-->
+                    <a [routerLink]="['/Product-Stores', product.productName]">
+                        <img [src]="product.productImage" alt="{{ product.productName }}" class="img-fluid image-property"> <!--image scales appropriately with its parent container-->
                     </a>
                 </div>
                 <div>
-                    <a [routerLink]="['/Product-Stores', product.pname]">{{ product.pname }}</a>
+                    <a [routerLink]="['/Product-Stores', product.productName]">{{ product.productName }}</a>
                 </div>
             </div>
         </div>

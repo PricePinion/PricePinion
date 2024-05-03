@@ -23,7 +23,6 @@ import { MatMenuModule } from "@angular/material/menu";
 import { ProductStoresComponent } from './product-stores/product-stores.component';
 import { MatTableModule } from '@angular/material/table';
 
-
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -36,6 +35,7 @@ import { MatTableModule } from '@angular/material/table';
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
+		// Ng2SearchPipeModule,
 		MatToolbarModule,
 		MatButtonModule,
 		MatIconModule,
@@ -45,6 +45,7 @@ import { MatTableModule } from '@angular/material/table';
 		FormsModule,
 		MatMenuModule,
 		MatTableModule
+		
 	],
 	providers: [provideClientHydration(), provideAnimationsAsync()],
 	bootstrap: [AppComponent],
