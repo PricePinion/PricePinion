@@ -70,7 +70,7 @@ export class ProductStoresComponent implements OnInit {
     this.productService.setSaveForLater(this.productID)
       .subscribe({
       next: (response: any) => {
-        console.log('RESPONSE: ',response);
+        console.log('RESPONSE: ',response.status);
       },
       error: (error) => {
         console.error('Error saving data', error);

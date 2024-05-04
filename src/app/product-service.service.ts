@@ -21,6 +21,6 @@ export class ProductService {
  
   //save a product in SaveForLater
   setSaveForLater(productID: string): Observable<any> {
-    return this.http.post<any>(`http://localhost:8080/api/customer/save-for-later`, { productID });
+    return this.http.post<any>(`http://localhost:8080/api/customer/save-for-later`, { productID }, {observe: "response"});
   }
 }
