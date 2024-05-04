@@ -1,36 +1,46 @@
-import { Component } from "@angular/core";
+import { ProductService } from './../product-service.service';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
 	selector: "app-home",
 	templateUrl: "./home.component.html",
 	styleUrl: "./home.component.css",
 })
-export class HomeComponent {
-	dummyProducts = [
-		{ pname: "Kroger Honey Crisp Apples" },
-		{ pname: "Kroger Fuji Apples" },
-		{ pname: "Natures Basket Bread" },
-		{ pname: "2% Milk" },
-		{ pname: "Pampers Diaper" },
-		{ pname: "Smartwater" },
-		{ pname: "Reign Storm Peach" },
-	];
+export class HomeComponent implements OnInit {
+	products: any[] = [];
 
-	filteredProducts: any[] = [...this.dummyProducts]; // Array to hold filtered products by search
+	// Array to hold filtered products by search
+	filteredProducts: any[] = [];
+
+	//Search Bar Filter
 	searchFilter: string = "";
+	constructor(private productService: ProductService) { }
 
-	filterProducts(searchFilter: string): void {
-		console.log(searchFilter);
-		if (searchFilter.trim()) {
-			this.filteredProducts = this.dummyProducts.filter((product) =>
-				product.pname.toLowerCase().includes(searchFilter.toLowerCase())
+	ngOnInit(): void {
+		this.getAllProducts();
+	}
+
+	getAllProducts() {
+		this.productService.getAllProducts()
+			.subscribe({
+				next: (response) => {
+					this.products = response;
+					this.filteredProducts = [...this.products];
+				},
+				error: (error) => {
+					console.error('Error fetching products:', error);
+				}
+			});
+	}
+
+	filterProducts(): void {
+		if (this.searchFilter && this.products) {
+			this.filteredProducts = this.products.filter((product) =>
+				product.productName.toLowerCase().includes(this.searchFilter.toLowerCase())
 			);
 		} else {
-			this.filteredProducts = [...this.dummyProducts]; // Display all products
-		}
-		//if no products match the search criteria
-		if (this.filteredProducts.length === 0) {
-			this.filteredProducts.push({ pname: "Product not found!" });
+			this.filteredProducts = [...this.products];
 		}
 	}
 }
+
