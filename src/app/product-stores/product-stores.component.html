@@ -8,6 +8,7 @@
                 <mat-icon>favorite</mat-icon> Save For Later
             </button>
         </div>
+        <div [class.status-message]="statusMessage" [ngClass]="messageClass">{{ statusMessage }}</div>
     </div>
 
     <div class="right-column">

@@ -21,6 +21,9 @@ export class ProductStoresComponent implements OnInit {
   // Column Names for the productStore table
   tableColumns: string[] = ['Store', 'Price', 'ShopNow'];
 
+  //Display status message
+  statusMessage: string = "";
+  messageClass : string = "";
   //To make api calls and get the params from other component
   constructor(private productService: ProductService, private route: ActivatedRoute) { }
 
@@ -70,9 +73,14 @@ export class ProductStoresComponent implements OnInit {
     this.productService.setSaveForLater(this.productID)
       .subscribe({
       next: (response: any) => {
-        console.log('RESPONSE: ',response.status);
+        if (response.status == '201') 
+        { this.statusMessage = "Data is saved successfully!"; 
+          this.messageClass = 'success';
+        }
       },
       error: (error) => {
+        this.statusMessage = "This product is already saved for later!"; 
+        this.messageClass = 'error';
         console.error('Error saving data', error);
       }
     });
