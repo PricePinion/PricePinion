@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
+import { ProductService } from './../product-service.service';
 
 @Component({
   selector: 'app-product-stores',
@@ -9,71 +10,60 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 
 export class ProductStoresComponent implements OnInit {
-  productName: string = '';
+  productID: string = "";
 
   //This array will hold all the information on products and stores
-  productStores: any[] = [];
+  productStores: any;
 
   // Table to store data //definite assignment assertion for OnInit to notify that it will be initialised later for sure
   tableData!: MatTableDataSource<any>;
 
   // Column Names for the productStore table
-  tableColumns: string[] = ['Store', 'Price', 'Description', 'VisitStore'];
+  tableColumns: string[] = ['Store', 'Price', 'ShopNow'];
 
-  // Event emitter - to pass product name to SaveForLaterComponent by creating a output event/outgoing event
-  @Output() setProductEvent: EventEmitter<string> = new EventEmitter<string>();
-
-  // This to activate routes to read param value from home component
-  constructor(private route: ActivatedRoute) {
-  }
+  //To make api calls and get the params from other component
+  constructor(private productService: ProductService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    // Get the productID from the params parameter passed from the home component on click of a product
     this.route.paramMap.subscribe((params: ParamMap) => {
-
-      // Get the productName from the params parameter passed from the home component on click of a product
-      this.productName = params.get('productName') ?? '';
-
-      //DUMMY DATA
-      //Create a product object to store data and push it in the array
-      let productObj = {
-        productName: this.productName,
-        storeName: 'QFC',
-        productPrice: '$10.99',
-        productDescription: 'This is first product description',
-        storeLink: 'http://qfc.com'
-      };
-      this.productStores.push(productObj);
-      
-      //DUMMY DATA
-      productObj = {
-        productName: this.productName,
-        storeName: 'WholeFoods',
-        productPrice: '$7.99',
-        productDescription: 'This is second product description.',
-        storeLink: 'http://wholefoods.com'
-      };
-      this.productStores.push(productObj);
-
-
-      let tableValues = this.productStores.map(item => {
-        return {
-          Store: item.storeName,
-          Price: item.productPrice,
-          Description: item.productDescription,
-          VisitStore: item.storeLink
-        };
-      });
-
-      // Assign the data for display
-      this.tableData = new MatTableDataSource(tableValues);
-
+      this.productID = params.get('productID') ?? '';
     });
+
+    this.getOneProduct();
   }
 
-  // Function to emit product name to SaveForLaterComponent
-  setProduct(productName: string): void {
-    this.setProductEvent.emit(productName);
-    console.log(productName);
+  //Get all store information of the selected product
+  getOneProduct() {
+    this.productService.getOneProduct(this.productID)
+      .subscribe({
+        next: (response: any) => {
+          this.productStores = response;
+
+          this.generateTableData();
+        },
+        error: (error) => {
+          console.error('Error fetching stores:', error);
+        }
+      });
   }
-  
+
+  generateTableData() {
+    //Combining the array with comparison sub array
+    const combinedProducts = [...this.productStores.productComparison, this.productStores];
+
+    const tableValues = combinedProducts.map(item => {
+      return {
+        Store: item.storeName,
+        Price: item.productPrice,
+        ShopNow: item.productLink
+      };
+    });
+    //Pushing data to the tableData data source
+    this.tableData = new MatTableDataSource(tableValues);
+  }
+
 }
+
+

@@ -17,11 +17,11 @@ export class HomeComponent implements OnInit {
 	constructor(private productService: ProductService) { }
 
 	ngOnInit(): void {
-		this.getProducts();
+		this.getAllProducts();
 	}
 
-	getProducts() {
-		this.productService.getProducts()
+	getAllProducts() {
+		this.productService.getAllProducts()
 			.subscribe({
 				next: (response) => {
 					this.products = response;
@@ -34,14 +34,13 @@ export class HomeComponent implements OnInit {
 	}
 
 	filterProducts(): void {
-		console.log('In function:', this.searchFilter);
-
 		if (this.searchFilter && this.products) {
 			this.filteredProducts = this.products.filter((product) =>
-				product.productName.toLowerCase().includes(this.searchFilter)
+				product.productName.toLowerCase().includes(this.searchFilter.toLowerCase())
 			);
 		} else {
 			this.filteredProducts = [...this.products];
 		}
 	}
 }
+

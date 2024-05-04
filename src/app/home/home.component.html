@@ -7,9 +7,6 @@
                 <input [(ngModel)]="searchFilter" type="text" class="form-control" placeholder="Search Product"  
                     (input)="filterProducts()">     
             </div>
-            
-            <p>Searched Value is:  {{ searchFilter }}</p> 
-            
         </div>
     </div>
 </div>
@@ -20,16 +17,16 @@
      <!-- mt-5 class is margin top/vertical spacing -->
     <div class="row mt-5">
         <!-- mb-4 class is margin bottom spacing -->
-        <div class="col-sm-4   mb-4" *ngFor="let product of filteredProducts">
+        <div class="col-sm-3  mb-4" *ngFor="let product of filteredProducts">
             <!-- Navigation to Product-Stores component on click of a product -->
             <div class="products text-center">
                 <div>
-                    <a [routerLink]="['/Product-Stores', product.productName]">
+                    <a [routerLink]="['/Product-Stores', product.productID]">
                         <img [src]="product.productImage" alt="{{ product.productName }}" class="img-fluid image-property"> <!--image scales appropriately with its parent container-->
                     </a>
                 </div>
                 <div>
-                    <a [routerLink]="['/Product-Stores', product.productName]">{{ product.productName }}</a>
+                    <a [routerLink]="['/Product-Stores', product.productID]">{{ product.productName }}</a>
                 </div>
             </div>
         </div>

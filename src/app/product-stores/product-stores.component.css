@@ -1,11 +1,13 @@
 .product-details-container {
     display: flex;
+    color: rgb(87, 132, 19);  
 }
 
 .left-column {
     margin-top: 50px;
-    flex: 0 0 300px;
+    flex: 0 0 500px;
     padding: 20px; 
+    border-right: 1px solid #ccc;
 }
 
 .right-column {
@@ -15,20 +17,30 @@
 
 .table {
     width: 100%;
+    border-spacing: 0;
 }
 
 .button{
     font-weight: 100;
-    margin-top: 250px;
+    margin-top: 50px;
     font-size: 18px;
-	background-color: rgb(72, 72, 232);
+	background-color: #4CAF50; 
 	color: #fff;
 	padding: 15px 20px;
-	border-radius: 5px;
+	border-radius: 10px;
 	cursor: pointer;
+   
 }
 
 .description-cell {
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 16px;
+    
+}
+
+.image{
+    height: 300px;
+	width: 250px;
+	margin-bottom: 20px;
 }
