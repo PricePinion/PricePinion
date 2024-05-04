@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { MatTableDataSource } from '@angular/material/table';
+import { ProductService } from './../product-service.service';
 
 @Component({
 	selector: "app-save-for-later",
@@ -8,12 +9,11 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 
 export class SaveForLaterComponent implements OnInit {
-	// @Input() productName: string = '';
 
-	productName: string = '';
+	productID: string = '';
 
-	//This array will hold the list of products saved for later
-	productList: any[] = [];
+	//List of stores saved for later
+	productStores: any[] = [];
 
 	// Table to store product names //definite assignment assertion for OnInit to notify that it will be initialised later for sure
 	tableDataProductNames!: MatTableDataSource<any>;
@@ -24,20 +24,27 @@ export class SaveForLaterComponent implements OnInit {
 	// Column Names for the productStore table
 	tableColumns: string[] = ['Image', 'ProductName'];
 
+	//To make api calls and get the params from other component
+	constructor(private productService: ProductService) { }
+
 	ngOnInit(): void {
-		// console.log("Product Name received in SaveForLaterComponent:", this.productName);
-		let productObj = {
-			productName: 'Product 1',
-			productImage: "[Image]"
-		};
-
-		this.productList.push(productObj);
-
-		productObj = {
-			productName: 'Product2',
-			productImage: '[Image]'
-		};
-		this.productList.push(productObj);
+		this.getFromSavedForLater()
 	}
 
+	getFromSavedForLater(){
+		//make a call to retrieve data from SFL and display only product names and images on screen with buttons to clear/erase
+	}
+
+	getProductStoreDetails(){
+		//on click of a product name in SFL, view the related store(s) information. 
+		//Reuse product-stores.component.html for the view
+	}
+
+	deleteOneProductFromSFL(){
+		//make a call to delete one product at a time from SFL on click of 'Clear' button
+	}
+
+	deleteAllProductsFromSFL(){
+		//make a call to delete all products at a time from SFL on click of 'Clear ALL' button
+	}
 }

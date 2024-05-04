@@ -48,7 +48,8 @@ export class ProductStoresComponent implements OnInit {
         }
       });
   }
-
+  
+  //Pushing data to the tableData data source
   generateTableData() {
     //Combining the array with comparison sub array
     const combinedProducts = [...this.productStores.productComparison, this.productStores];
@@ -60,8 +61,21 @@ export class ProductStoresComponent implements OnInit {
         ShopNow: item.productLink
       };
     });
-    //Pushing data to the tableData data source
+    
     this.tableData = new MatTableDataSource(tableValues);
+  }
+
+  //Save product in SaveForLater
+  setSaveForLater(){
+    this.productService.setSaveForLater(this.productID)
+      .subscribe({
+      next: (response: any) => {
+        console.log('RESPONSE: ',response);
+      },
+      error: (error) => {
+        console.error('Error saving data', error);
+      }
+    });
   }
 
 }

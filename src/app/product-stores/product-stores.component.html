@@ -4,7 +4,7 @@
 
         <img [src]="productStores?.productImage" alt={{productStores?.productName}} class="image">
         <div>
-            <button class="button" type="submit">
+            <button class="button" type="submit" (click)="setSaveForLater()">
                 <mat-icon>favorite</mat-icon> Save For Later
             </button>
         </div>
