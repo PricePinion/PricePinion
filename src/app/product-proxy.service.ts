@@ -6,21 +6,22 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-
+  hostUrl: String = 'http://localhost:8080/';
+  
   constructor(private http: HttpClient) { }
 
   //display all products
   getAllProducts(): Observable<any[]> {
-    return this.http.get<any[]>('http://localhost:8080/api/products');
+    return this.http.get<any[]>(`${this.hostUrl}api/products`);
   }
 
   //display all stores based on one product
   getOneProduct(productId: string): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:8080/api/product/${productId}`);
+    return this.http.get<any[]>(`${this.hostUrl}api/product/${productId}`);
   }
  
   //save a product in SaveForLater
   setSaveForLater(productID: string): Observable<any> {
-    return this.http.post<any>(`http://localhost:8080/api/customer/save-for-later`, { productID }, {observe: "response"});
+    return this.http.post<any>(`${this.hostUrl}api/customer/save-for-later`, { productID }, {observe: "response"});
   }
 }

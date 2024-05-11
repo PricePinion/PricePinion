@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
-import { ProductService } from './../product-service.service';
+import { ProductService } from '../product-proxy.service';
 
 @Component({
   selector: 'app-product-stores',
@@ -24,6 +24,7 @@ export class ProductStoresComponent implements OnInit {
   //Display status message
   statusMessage: string = "";
   messageClass : string = "";
+  
   //To make api calls and get the params from other component
   constructor(private productService: ProductService, private route: ActivatedRoute) { }
 

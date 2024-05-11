@@ -22,7 +22,8 @@ import { FormsModule } from "@angular/forms";
 import { MatMenuModule } from "@angular/material/menu";
 import { ProductStoresComponent } from './product-stores/product-stores.component';
 import { MatTableModule } from '@angular/material/table';
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
+import { ProductService} from './product-proxy.service';
 
 @NgModule({
 	declarations: [
@@ -36,7 +37,6 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
-		// Ng2SearchPipeModule,
 		MatToolbarModule,
 		MatButtonModule,
 		MatIconModule,
@@ -49,7 +49,7 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 		HttpClientModule
 		
 	],
-	providers: [provideClientHydration(), provideAnimationsAsync()],
+	providers: [provideClientHydration(), provideAnimationsAsync(), ProductService],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

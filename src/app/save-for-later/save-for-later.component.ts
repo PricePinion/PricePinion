@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MatTableDataSource } from '@angular/material/table';
-import { ProductService } from './../product-service.service';
+import { ProductService } from '../product-proxy.service';
 
 @Component({
 	selector: "app-save-for-later",
