@@ -47,7 +47,6 @@ import { ProductService} from './product-proxy.service';
 		MatMenuModule,
 		MatTableModule,
 		HttpClientModule
-		
 	],
 	providers: [provideClientHydration(), provideAnimationsAsync(), ProductService],
 	bootstrap: [AppComponent],
