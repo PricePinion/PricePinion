@@ -24,4 +24,18 @@ export class ProductService {
   setSaveForLater(productID: string): Observable<any> {
     return this.http.post<any>(`${this.hostUrl}api/customer/save-for-later`, { productID }, {observe: "response"});
   }
+
+  getSaveForLater():Observable<any> {
+    return this.http.get<any>(`${this.hostUrl}api/save-for-later` );
+  }
+
+  deleteSflProduct(productID: string): Observable<any> {
+    console.log("productID inside ", productID)
+    return this.http.delete<any>(`${this.hostUrl}api/customer/delete-one-product-from-sfl/${productID}`);
+  }
+
+  deleteAllSflProducts(): Observable<any> {
+    return this.http.delete<any>(`${this.hostUrl}api/customer/delete-all-products-from-sfl`, {observe: "response"});
+  }
+
 }

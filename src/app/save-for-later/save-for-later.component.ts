@@ -2,49 +2,69 @@ import { Component, OnInit } from "@angular/core";
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductService } from '../product-proxy.service';
 
+interface SaveForLaterItem {
+	productID: string;
+	productName: string;
+	storeName: string;
+	productPrice: string;
+	productLink: string;
+	productImage: string;
+	productComparison: any[];  // Adjust the type as per your needs
+}
+
+interface Product {
+	customerID: string;
+	customerName: string;
+	customerEmail: string;
+	saveForLater: SaveForLaterItem[];
+}
+
 @Component({
 	selector: "app-save-for-later",
-	templateUrl: "./save-for-later.component.html",
-	styleUrl: "./save-for-later.component.css",
+	templateUrl: "save-for-later.component.html",
+	styleUrls: ["./save-for-later.component.css"],
 })
-
 export class SaveForLaterComponent implements OnInit {
 
-	productID: string = '';
+	// Product data retrieved from SFL
+	product: Product | null = null;
 
-	//List of stores saved for later
-	productStores: any[] = [];
+	// Table data source for product names and images
+	tableDataProductNames = new MatTableDataSource<SaveForLaterItem>();
 
-	// Table to store product names //definite assignment assertion for OnInit to notify that it will be initialised later for sure
-	tableDataProductNames!: MatTableDataSource<any>;
-
-	// Table to store product data for each product
-	tableDataProductData!: MatTableDataSource<any>;
-
-	// Column Names for the productStore table
-	tableColumns: string[] = ['Image', 'ProductName'];
-
-	//To make api calls and get the params from other component
 	constructor(private productService: ProductService) { }
 
 	ngOnInit(): void {
-		this.getFromSavedForLater()
+		this.getFromSavedForLater();
 	}
 
-	getFromSavedForLater(){
-		//make a call to retrieve data from SFL and display only product names and images on screen with buttons to clear/erase
+	getFromSavedForLater() {
+		this.productService.getSaveForLater() // Replace with your service call
+			.subscribe((product: Product) => {
+				if (product && product.saveForLater) {
+					this.product = product;
+					this.tableDataProductNames.data = product.saveForLater; // Update data source
+				}
+			});
 	}
 
-	getProductStoreDetails(){
-		//on click of a product name in SFL, view the related store(s) information. 
-		//Reuse product-stores.component.html for the view
+	deleteOneProductFromSFL(productId: string) {
+		if (this.product) {
+			this.productService.deleteSflProduct(productId)
+				.subscribe(() => {
+					this.product!.saveForLater = this.product!.saveForLater.filter(item => item.productID !== productId);
+					this.tableDataProductNames.data = this.product!.saveForLater; // Update data source
+				});
+		}
 	}
 
-	deleteOneProductFromSFL(){
-		//make a call to delete one product at a time from SFL on click of 'Clear' button
-	}
-
-	deleteAllProductsFromSFL(){
-		//make a call to delete all products at a time from SFL on click of 'Clear ALL' button
+	deleteAllProductsFromSFL() {
+		if (this.product) {
+			this.productService.deleteAllSflProducts() // Replace with your service call
+				.subscribe(() => {
+					this.product!.saveForLater = [];
+					this.tableDataProductNames.data = []; // Update data source
+				});
+		}
 	}
 }

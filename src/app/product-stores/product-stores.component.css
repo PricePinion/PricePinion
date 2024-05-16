@@ -20,17 +20,29 @@
     border-spacing: 0;
 }
 
-.button{
+.button {
     font-weight: 100;
     margin-top: 50px;
     font-size: 18px;
-	background-color: #5f7cd1; 
-	color: #fff;
-	padding: 15px 20px;
-	border-radius: 10px;
-	cursor: pointer;
-   
+    background-color: #5f7cd1;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none; /* Remove border */
+    outline: none; /* Remove outline */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center align items vertically */
 }
+
+.delete-button {
+    background-color: #ff6347; /* Red color for delete button */
+}
+
+.icon {
+    margin-right: 10px; /* Adjust margin to create space between icon and text */
+}
+
 
 .description-cell {
     overflow: hidden;

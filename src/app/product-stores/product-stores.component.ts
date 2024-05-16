@@ -24,6 +24,7 @@ export class ProductStoresComponent implements OnInit {
   //Display status message
   statusMessage: string = "";
   messageClass : string = "";
+  sflStatus: boolean = false;
   
   //To make api calls and get the params from other component
   constructor(private productService: ProductService, private route: ActivatedRoute) { }
@@ -36,6 +37,7 @@ export class ProductStoresComponent implements OnInit {
     });
 
     this.getOneProduct();
+    this.checkSFLStatus();
   }
 
   //Get all store information of the selected product
@@ -46,6 +48,20 @@ export class ProductStoresComponent implements OnInit {
           this.productStores = response;
 
           this.generateTableData();
+        },
+        error: (error) => {
+          console.error('Error fetching stores:', error);
+        }
+      });
+  }
+
+  checkSFLStatus(){
+    this.productService.getSaveForLater()
+      .subscribe({
+        next: (response: any) => {
+          if(response.saveForLater.length > 0){
+            this.sflStatus = response.saveForLater.some((item: any) => item.productID === this.productID);
+          }
         },
         error: (error) => {
           console.error('Error fetching stores:', error);
@@ -78,6 +94,7 @@ export class ProductStoresComponent implements OnInit {
         { this.statusMessage = "Data is saved successfully!"; 
           this.messageClass = 'success';
         }
+        this.checkSFLStatus();
       },
       error: (error) => {
         this.statusMessage = "This product is already saved for later!"; 
@@ -86,6 +103,25 @@ export class ProductStoresComponent implements OnInit {
       }
     });
   }
+
+    //Remove product from SaveForLater
+    removeSaveForLater(){
+      this.productService.deleteSflProduct(this.productID)
+        .subscribe({
+        next: (response: any) => {
+          if (response.status == '201')
+          { this.statusMessage = "Product is removed successfully!";
+            this.messageClass = 'success';
+          }
+          this.checkSFLStatus();
+        },
+        error: (error) => {
+          this.statusMessage = "This product is already removed from Save For Later!";
+          this.messageClass = 'error';
+          console.error('Error removing data', error);
+        }
+      });
+    }
 
 }
 
