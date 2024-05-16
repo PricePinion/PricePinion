@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductService } from '../product-proxy.service';
@@ -85,13 +85,21 @@ export class ProductStoresComponent implements OnInit {
     this.tableData = new MatTableDataSource(tableValues);
   }
 
+
+  setMsgTimeOut(){
+    setTimeout(() => {
+      this.statusMessage = "";
+    }, 3000)
+  }
+
   //Save product in SaveForLater
   setSaveForLater(){
     this.productService.setSaveForLater(this.productID)
       .subscribe({
       next: (response: any) => {
         if (response.status == '201') 
-        { this.statusMessage = "Data is saved successfully!"; 
+        { this.statusMessage = "Data is saved successfully!";
+          this.setMsgTimeOut()
           this.messageClass = 'success';
         }
         this.checkSFLStatus();
@@ -109,8 +117,9 @@ export class ProductStoresComponent implements OnInit {
       this.productService.deleteSflProduct(this.productID)
         .subscribe({
         next: (response: any) => {
-          if (response.status == '201')
+          if (response)
           { this.statusMessage = "Product is removed successfully!";
+            this.setMsgTimeOut()
             this.messageClass = 'success';
           }
           this.checkSFLStatus();

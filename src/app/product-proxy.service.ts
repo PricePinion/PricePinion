@@ -30,7 +30,6 @@ export class ProductService {
   }
 
   deleteSflProduct(productID: string): Observable<any> {
-    console.log("productID inside ", productID)
     return this.http.delete<any>(`${this.hostUrl}api/customer/delete-one-product-from-sfl/${productID}`);
   }
 
