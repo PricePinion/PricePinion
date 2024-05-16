@@ -41,7 +41,6 @@ export class SaveForLaterComponent implements OnInit {
 	getFromSavedForLater() {
 		this.productService.getSaveForLater() // Replace with your service call
 			.subscribe((product: Product) => {
-				console.log("product", product);
 				if (product && product.saveForLater) {
 					this.product = product;
 					this.tableDataProductNames.data = product.saveForLater; // Update data source
@@ -50,7 +49,6 @@ export class SaveForLaterComponent implements OnInit {
 	}
 
 	deleteOneProductFromSFL(productId: string) {
-		console.log("productId", productId)
 		if (this.product) {
 			this.productService.deleteSflProduct(productId)
 				.subscribe(() => {

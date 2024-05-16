@@ -4,9 +4,21 @@
 
         <img [src]="productStores?.productImage" alt={{productStores?.productName}} class="image">
         <div>
-            <button class="button" type="submit" (click)="setSaveForLater()">
-                <mat-icon>favorite</mat-icon> Save For Later
-            </button>
+            <!-- Use ngIf else to handle if-else condition -->
+            <ng-container *ngIf="sflStatus; else saveForLaterBtn">
+                <!-- Show the delete button if sflStatus is true -->
+                <button class="button delete-button" type="button" (click)="removeSaveForLater()">
+                    <mat-icon class="icon">delete</mat-icon> Delete
+                </button>
+            </ng-container>
+
+            <!-- Define the else block using ng-template -->
+            <ng-template #saveForLaterBtn>
+                <!-- Show the save button if sflStatus is false -->
+                <button class="button" type="submit" (click)="setSaveForLater()">
+                    <mat-icon class="icon">favorite</mat-icon> Save For Later
+                </button>
+            </ng-template>
         </div>
         <div [class.status-message]="statusMessage" [ngClass]="messageClass">{{ statusMessage }}</div>
     </div>
