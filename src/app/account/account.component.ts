@@ -26,6 +26,6 @@ export class AccountComponent {
 			statusMessage.setValue("Data is saved successfully!");
 		}
 
-		this.customerForm.reset();
+		// this.customerForm.reset();
 	}
 }

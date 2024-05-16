@@ -9,7 +9,7 @@ interface SaveForLaterItem {
 	productPrice: string;
 	productLink: string;
 	productImage: string;
-	productComparison: any[];  // Adjust the type as per your needs
+	productComparison: any[];
 }
 
 interface Product {
@@ -39,11 +39,11 @@ export class SaveForLaterComponent implements OnInit {
 	}
 
 	getFromSavedForLater() {
-		this.productService.getSaveForLater() // Replace with your service call
+		this.productService.getSaveForLater() 
 			.subscribe((product: Product) => {
 				if (product && product.saveForLater) {
 					this.product = product;
-					this.tableDataProductNames.data = product.saveForLater; // Update data source
+					this.tableDataProductNames.data = product.saveForLater; 
 				}
 			});
 	}
@@ -53,17 +53,17 @@ export class SaveForLaterComponent implements OnInit {
 			this.productService.deleteSflProduct(productId)
 				.subscribe(() => {
 					this.product!.saveForLater = this.product!.saveForLater.filter(item => item.productID !== productId);
-					this.tableDataProductNames.data = this.product!.saveForLater; // Update data source
+					this.tableDataProductNames.data = this.product!.saveForLater; 
 				});
 		}
 	}
 
 	deleteAllProductsFromSFL() {
 		if (this.product) {
-			this.productService.deleteAllSflProducts() // Replace with your service call
+			this.productService.deleteAllSflProducts() 
 				.subscribe(() => {
 					this.product!.saveForLater = [];
-					this.tableDataProductNames.data = []; // Update data source
+					this.tableDataProductNames.data = []; 
 				});
 		}
 	}

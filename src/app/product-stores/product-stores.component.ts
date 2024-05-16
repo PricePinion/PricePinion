@@ -23,9 +23,9 @@ export class ProductStoresComponent implements OnInit {
 
   //Display status message
   statusMessage: string = "";
-  messageClass : string = "";
+
   sflStatus: boolean = false;
-  
+
   //To make api calls and get the params from other component
   constructor(private productService: ProductService, private route: ActivatedRoute) { }
 
@@ -55,11 +55,28 @@ export class ProductStoresComponent implements OnInit {
       });
   }
 
-  checkSFLStatus(){
+  //Pushing data to the tableData data source
+  generateTableData() {
+    //Combining the list of stores
+    const listOfStores = [this.productStores, ...this.productStores.productComparison];
+
+    const tableValues = listOfStores.map(item => {
+      return {
+        Store: item.storeName,
+        Price: item.productPrice,
+        ShopNow: item.productLink
+      };
+    });
+
+    this.tableData = new MatTableDataSource(tableValues);
+  }
+
+
+  checkSFLStatus() {
     this.productService.getSaveForLater()
       .subscribe({
         next: (response: any) => {
-          if(response.saveForLater.length > 0){
+          if (response.saveForLater.length > 0) {
             this.sflStatus = response.saveForLater.some((item: any) => item.productID === this.productID);
           }
         },
@@ -68,69 +85,46 @@ export class ProductStoresComponent implements OnInit {
         }
       });
   }
-  
-  //Pushing data to the tableData data source
-  generateTableData() {
-    //Combining the array with comparison sub array
-    const combinedProducts = [...this.productStores.productComparison, this.productStores];
 
-    const tableValues = combinedProducts.map(item => {
-      return {
-        Store: item.storeName,
-        Price: item.productPrice,
-        ShopNow: item.productLink
-      };
-    });
-    
-    this.tableData = new MatTableDataSource(tableValues);
-  }
-
-
-  setMsgTimeOut(){
+  setMsgTimeOut() {
     setTimeout(() => {
       this.statusMessage = "";
     }, 3000)
   }
 
   //Save product in SaveForLater
-  setSaveForLater(){
+  setSaveForLater() {
     this.productService.setSaveForLater(this.productID)
       .subscribe({
-      next: (response: any) => {
-        if (response.status == '201') 
-        { this.statusMessage = "Data is saved successfully!";
-          this.setMsgTimeOut()
-          this.messageClass = 'success';
-        }
-        this.checkSFLStatus();
-      },
-      error: (error) => {
-        this.statusMessage = "This product is already saved for later!"; 
-        this.messageClass = 'error';
-        console.error('Error saving data', error);
-      }
-    });
-  }
-
-    //Remove product from SaveForLater
-    removeSaveForLater(){
-      this.productService.deleteSflProduct(this.productID)
-        .subscribe({
         next: (response: any) => {
-          if (response)
-          { this.statusMessage = "Product is removed successfully!";
+          if (response) {
+            this.statusMessage = "Data is saved successfully!";
             this.setMsgTimeOut()
-            this.messageClass = 'success';
           }
           this.checkSFLStatus();
         },
         error: (error) => {
-          this.statusMessage = "This product is already removed from Save For Later!";
-          this.messageClass = 'error';
+          console.error('Error saving data', error);
+        }
+      });
+  }
+
+  //Remove product from SaveForLater
+  removeSaveForLater() {
+    this.productService.deleteSflProduct(this.productID)
+      .subscribe({
+        next: (response: any) => {
+          if (response) {
+            this.statusMessage = "Product is removed successfully!";
+            this.setMsgTimeOut()
+          }
+          this.checkSFLStatus();
+        },
+        error: (error) => {
           console.error('Error removing data', error);
         }
       });
-    }
+  }
 
 }
 

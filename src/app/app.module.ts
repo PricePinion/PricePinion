@@ -3,14 +3,14 @@ import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
 import { ProductService} from './product-proxy.service';
 import { AppRoutingModule } from "./app-routing.module";
-import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
+import { provideAnimationsAsync } from "@angular/platform-browser/animations/async"; //account menu display
 
 import { AppComponent } from "./app.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { HomeComponent } from "./home/home.component";
+import { ProductStoresComponent } from './product-stores/product-stores.component';
 import { SaveForLaterComponent } from "./save-for-later/save-for-later.component";
 import { AccountComponent } from "./account/account.component";
-import { ProductStoresComponent } from './product-stores/product-stores.component';
 
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
