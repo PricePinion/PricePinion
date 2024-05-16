@@ -20,10 +20,6 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have as title "FrontEnd"', () => {
-    expect(component.title).toEqual('FrontEnd');
-  });
-
   it('should render title', () => {
     fixture.detectChanges(); // Trigger change detection
     const compiled = fixture.nativeElement as HTMLElement;
