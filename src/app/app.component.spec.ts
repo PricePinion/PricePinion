@@ -1,29 +1,33 @@
-import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { AppComponent } from './app.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
+import { AppComponent } from "./app.component";
 
-describe('AppComponent', () => {
-  let fixture: ComponentFixture<AppComponent>;
-  let component: AppComponent;
+describe("AppComponent", () => {
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
+			imports: [RouterTestingModule],
+			declarations: [AppComponent],
+		}).compileComponents();
+	});
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [AppComponent],
-      schemas: [NO_ERRORS_SCHEMA], // Ignore unknown elements and attributes
-    }).compileComponents();
+	it("should create the app", () => {
+		const fixture = TestBed.createComponent(AppComponent);
+		const app = fixture.componentInstance;
+		expect(app).toBeTruthy();
+	});
 
-    fixture = TestBed.createComponent(AppComponent);
-    component = fixture.componentInstance;
-  });
+	it(`should have as title 'FrontEnd'`, () => {
+		const fixture = TestBed.createComponent(AppComponent);
+		const app = fixture.componentInstance;
+		expect(app.title).toEqual("FrontEnd");
+	});
 
-  it('should create the app', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should render title', () => {
-    fixture.detectChanges(); // Trigger change detection
-    const compiled = fixture.nativeElement as HTMLElement;
-    const titleElement = compiled.querySelector('.title'); // Update selector as per the actual template
-    expect(titleElement.textContent).toContain('FrontEnd');
-  });
+	it("should render title", () => {
+		const fixture = TestBed.createComponent(AppComponent);
+		fixture.detectChanges();
+		const compiled = fixture.nativeElement as HTMLElement;
+		expect(compiled.querySelector("h1")?.textContent).toContain(
+			"Hello, FrontEnd"
+		);
+	});
 });
