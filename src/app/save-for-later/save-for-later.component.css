@@ -1,0 +1,17 @@
+/*Remove comments from below code*/
+
+.save-for-later {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+#noDataMessage {
+    text-align: center;
+    margin: auto;
+    /*background-color: #f0f0f0;*/
+    width: fit-content;
+
+}
