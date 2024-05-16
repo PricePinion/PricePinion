@@ -46,7 +46,6 @@ import { FormsModule } from "@angular/forms";
 		MatMenuModule,
 		MatTableModule,
 		HttpClientModule
-		
 	],
 	providers: [ provideAnimationsAsync(), ProductService],
 	bootstrap: [AppComponent],
