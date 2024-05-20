@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
 				},
 				error: (error) => {
 					console.error('Error fetching products:', error);
-				}
+				} 
 			});
 	}
 
