@@ -29,9 +29,9 @@ import { FormsModule } from "@angular/forms";
 		AppComponent,
 		NavbarComponent,
 		HomeComponent,
+		ProductStoresComponent,
 		SaveForLaterComponent,
-		AccountComponent,
-		ProductStoresComponent
+		AccountComponent
 	],
 	imports: [
 		BrowserModule,

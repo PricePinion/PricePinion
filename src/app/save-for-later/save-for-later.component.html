@@ -18,7 +18,7 @@
             <tbody>
             <tr *ngFor="let item of tableDataProductNames.data">
                 <td>
-                    <img [src]="item.productImage" alt="{{item.productName}}" class="img-fluid" style="width: 50px;">
+                    <img [src]="item.productImage" alt="{{item.productName}}" class="img-thumbnail" style="width: 100px;">
                 </td>
                 <td><a [routerLink]="['/Product-Stores', item.productID]">{{ item.productName }}</a></td>
                 <td>
