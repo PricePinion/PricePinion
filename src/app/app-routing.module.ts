@@ -7,7 +7,6 @@ import { ProductStoresComponent } from './product-stores/product-stores.componen
 
 const routes: Routes = [
 	{ path: "", component: HomeComponent },
-	{ path: "Home", component: HomeComponent },
 	{ path: "SFL", component: SaveForLaterComponent },
 	{ path: "Account", component: AccountComponent },
 	{ path: 'Product-Stores/:productID', component: ProductStoresComponent }
