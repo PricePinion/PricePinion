@@ -92,6 +92,14 @@ export class ProductStoresComponent implements OnInit {
     }, 3000)
   }
 
+  toggleSaveForLater() {
+    if (this.sflStatus) {
+      this.removeSaveForLater();
+    } else {
+      this.setSaveForLater();
+    }
+  }
+
   //Save product in SaveForLater
   setSaveForLater() {
     this.productService.setSaveForLater(this.productID)
@@ -99,6 +107,7 @@ export class ProductStoresComponent implements OnInit {
         next: (response: any) => {
           if (response) {
             this.statusMessage = "Data is saved successfully!";
+            this.sflStatus = true; // Update sflStatus
             this.setMsgTimeOut()
           }
           this.checkSFLStatus();
@@ -116,6 +125,7 @@ export class ProductStoresComponent implements OnInit {
         next: (response: any) => {
           if (response) {
             this.statusMessage = "Product is removed successfully!";
+            this.sflStatus = false; // Update sflStatus
             this.setMsgTimeOut()
           }
           this.checkSFLStatus();
