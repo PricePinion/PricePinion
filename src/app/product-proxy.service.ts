@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  hostUrl: String = 'http://localhost:8080/';
+  hostUrl: String = 'https://pricepinion-backend.azurewebsites.net/';
   
   constructor(private http: HttpClient) { }
 
