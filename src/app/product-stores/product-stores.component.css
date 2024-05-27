@@ -1,17 +1,16 @@
 .product-details-container {
     display: flex;
-    color: rgb(87, 132, 19);  
+    color: rgb(87, 132, 19);
 }
 
 .left-column {
-    margin-top: 50px;
-    flex: 0 0 500px;
-    padding: 20px; 
+    flex: 1;
+    padding: 20px;
     border-right: 1px solid #ccc;
 }
 
 .right-column {
-    flex: 2; 
+    flex: 2;
     padding: 20px;
 }
 
@@ -22,49 +21,45 @@
 
 .button {
     font-weight: 100;
-    margin-top: 50px;
-    font-size: 18px;
+    font-size: 1rem; 
     background-color: #5f7cd1;
     color: #fff;
-    padding: 15px 20px;
+    padding: 0.75rem 1rem; 
     border-radius: 10px;
     cursor: pointer;
-    border: none; /* Remove border */
-    outline: none; /* Remove outline */
-    display: flex; /* Use flexbox for alignment */
-    align-items: center; /* Center align items vertically */
+    display: flex;
+    align-items: center;
 }
 
 .delete-button {
-    background-color: #ff6347; /* Red color for delete button */
+    background-color: #ff6347;
 }
 
 .icon {
-    margin-right: 10px; /* Adjust margin to create space between icon and text */
+    margin-right: 0.5rem;
 }
-
 
 .description-cell {
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 16px;
-    
+    font-size: 1rem; 
 }
 
-.image{
-    height: 300px;
-	width: 250px;
-	margin-bottom: 20px;
+.image {
+    margin-top: 50px;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 70px;
 }
 
-.status-message{
+.status-message {
     margin-top: 20px;
 }
 
 .success {
     color: green;
-  }
-  
+}
+
 .error {
     color: red;
-  }
+}
