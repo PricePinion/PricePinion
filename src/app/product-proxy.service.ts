@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  hostUrl: String = 'https://pricepinion-backend.azurewebsites.net/';
-  
+  // hostUrl: String = 'https://pricepinion-backend.azurewebsites.net/';
+  hostUrl: String = 'http://localhost:8080/';
   constructor(private http: HttpClient) { }
 
   //display all products
@@ -38,6 +38,10 @@ export class ProductService {
   //delete all products from save for later screen
   deleteAllSflProducts(): Observable<any> {
     return this.http.delete<any>(`${this.hostUrl}api/customer/delete-all-products-from-sfl`, {observe: "response"});
+  }
+
+  authenticateGoogle(): Observable<any> {
+    return this.http.get<any>(`${this.hostUrl}auth/google`);
   }
 
 }
