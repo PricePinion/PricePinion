@@ -1,21 +1,26 @@
 <mat-toolbar color="primary" class="mat-elevation-z8">
     <!-- PricePinion/Home -->
-    <a mat-button style="font-size: 20px;" routerLink=""><mat-icon>storefront</mat-icon>PricePinion</a>
-
-    <div class="nvHeaderSpace"></div>
-
-    <!-- SaveForLater -->
-    <a mat-button routerLink="SFL"><mat-icon>favorite</mat-icon>&nbsp;Save&nbsp;For&nbsp;Later</a>
-
-    <!--Account Menu/DropDown-->
-    <mat-menu #accountMenu="matMenu">
-        <button *ngIf="isLoggedIn()" mat-menu-item routerLink="Account">Account</button>
-        <button *ngIf="isLoggedIn()" mat-menu-item (click)="logout()">Logout</button>
-        <button *ngIf="!isLoggedIn()" mat-menu-item (click)="authenticateGoogle()">Login</button>
-    </mat-menu>
-
-    <!--Account-->
-    <a mat-icon-button [matMenuTriggerFor]="accountMenu">
-        <mat-icon>account_circle</mat-icon>
+    <a mat-button style="font-size: 20px;" routerLink="">
+      <mat-icon>storefront</mat-icon>PricePinion
     </a>
-</mat-toolbar>
+  
+    <div class="nvHeaderSpace"></div>
+  
+    <!-- SaveForLater -->
+    <a mat-button routerLink="SFL">
+      <mat-icon>favorite</mat-icon>&nbsp;Save&nbsp;For&nbsp;Later
+    </a>
+  
+    <!-- Account Menu/DropDown -->
+    <mat-menu #accountMenu="matMenu">
+      <button *ngIf="isLoggedIn" mat-menu-item routerLink="Account">Account</button>
+      <button *ngIf="isLoggedIn" mat-menu-item (click)="logout()">Logout</button>
+      <button *ngIf="!isLoggedIn" mat-menu-item (click)="authenticateGoogle()">Login</button>
+    </mat-menu>
+  
+    <!-- Account -->
+    <a mat-icon-button [matMenuTriggerFor]="accountMenu">
+      <mat-icon>account_circle</mat-icon>
+    </a>
+  </mat-toolbar>
+  
