@@ -29,22 +29,17 @@ export class AccountComponent implements OnInit {
     this.authService.user.subscribe(user => {
       this.user = user;
       this.isGoogleUser = !!user?.googleId; // Assuming googleId is set for Google OAuth users
-
+	  console.log("user data:",this.user)
       if (user) {
         this.customerForm.patchValue({
-          name: user.displayName || user.name,
-          email: user.email
+          name: user.displayName,
+          email: user.customerEmail
         });
-
-        if (this.isGoogleUser) {
-          this.customerForm.get('name')?.disable();
-          this.customerForm.get('email')?.disable();
-        } else {
-          this.customerForm.get('name')?.enable();
-          this.customerForm.get('email')?.enable();
-        }
       }
     });
+
+    // Fetch user data on component initialization
+    this.authService.fetchUserData();
   }
 
   onSubmit(): void {

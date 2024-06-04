@@ -39,7 +39,7 @@ export class SaveForLaterComponent implements OnInit {
 	}
 
 	getFromSavedForLater() {
-		this.productService.getSaveForLater() 
+		this.productService.getSaveForLater()
 			.subscribe((product: Product) => {
 				if (product && product.saveForLater) {
 					this.product = product;
@@ -60,7 +60,7 @@ export class SaveForLaterComponent implements OnInit {
 
 	deleteAllProductsFromSFL() {
 		if (this.product) {
-			this.productService.deleteAllSflProducts() 
+			this.productService.deleteAllSflProducts()
 				.subscribe(() => {
 					this.product!.saveForLater = [];
 					this.tableDataProductNames.data = []; 

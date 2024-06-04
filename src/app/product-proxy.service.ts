@@ -22,26 +22,25 @@ export class ProductService {
  
   //save a product in SaveForLater
   setSaveForLater(productID: string): Observable<any> {
-    return this.http.post<any>(`${this.hostUrl}api/customer/save-for-later`, { productID }, {observe: "response"});
+    return this.http.post<any>(`${this.hostUrl}api/customer/save-for-later`, { productID }, { withCredentials: true });
   }
 
   //get status of save for later
   getSaveForLater():Observable<any> {
-    return this.http.get<any>(`${this.hostUrl}api/save-for-later` );
+    return this.http.get<any>(`${this.hostUrl}api/save-for-later`, { withCredentials: true });
   }
 
   //delete one product from save for later screen
   deleteSflProduct(productID: string): Observable<any> {
-    return this.http.delete<any>(`${this.hostUrl}api/customer/delete-one-product-from-sfl/${productID}`);
+    return this.http.delete<any>(`${this.hostUrl}api/customer/delete-one-product-from-sfl/${productID}`, { withCredentials: true });
   }
 
   //delete all products from save for later screen
   deleteAllSflProducts(): Observable<any> {
-    return this.http.delete<any>(`${this.hostUrl}api/customer/delete-all-products-from-sfl`, {observe: "response"});
+    return this.http.delete<any>(`${this.hostUrl}api/customer/delete-all-products-from-sfl`, { withCredentials: true });
   }
 
   authenticateGoogle(): Observable<any> {
     return this.http.get<any>(`${this.hostUrl}auth/google`);
   }
-
 }

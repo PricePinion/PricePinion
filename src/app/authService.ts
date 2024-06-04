@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, delay, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +45,6 @@ export class AuthService {
   fetchUserData() {
     this.http.get<any>(`${this.authUrl}auth/user`, { withCredentials: true }).subscribe(
       user => {
-        console.log("User data fetched successfully:", user); // Log the user data for debugging
         this.setUser(user);
       },
       error => {
