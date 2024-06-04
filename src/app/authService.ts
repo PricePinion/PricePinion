@@ -19,13 +19,14 @@ export class AuthService {
 
   login() {
     window.location.href = `${this.authUrl}auth/google`; // Update this URL as per your server configuration
+    console.log("Logged in", this.user)
   }
 
   logout() {
+    localStorage.removeItem('user');
     this.http.get(`${this.authUrl}auth/logout`, { withCredentials: true }).subscribe(() => {
-      localStorage.removeItem('user');
+      console.log("Logged out")
       this.userSubject.next(null);
-      this.router.navigate(['/']);
     });
   }
 
