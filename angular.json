@@ -70,6 +70,9 @@
 							"buildTarget": "FrontEnd:build:development"
 						}
 					},
+					"options": {
+						"proxyConfig": "proxy.conf.json"
+					},
 					"defaultConfiguration": "development"
 				},
 				"extract-i18n": {
@@ -93,5 +96,8 @@
 				}
 			}
 		}
-	}
+  },
+  "cli": {
+    "analytics": "c269e09d-9133-4597-9612-0c1605a7229c"
+  }
 }

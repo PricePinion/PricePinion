@@ -1,29 +1,30 @@
 <h3 class="title">Account Information</h3>
 
-
 <form [formGroup]="customerForm" (ngSubmit)="onSubmit()" class="customer-form-container">
+  <div>
+    <label for="name" class="labels">Name</label>
+    <input id="name" type="text" formControlName="name" class="input-fields">
+  </div>
 
-    <div>
-        <label for="name" class="labels">Name</label>
-        <input id="name" type="text" formControlName="name" class="input-fields">
-    </div>
+  <div>
+    <label for="email" class="labels">Email</label>
+    <input id="email" type="email" formControlName="email" class="input-fields">
+  </div>
 
-    <div>
-        <label for="email" class="labels">Email</label>
-        <input id="email" type="email" formControlName="email" class="input-fields">
-    </div>
+  <div *ngIf="!isGoogleUser">
+    <label for="password" class="labels">Password</label>
+    <input id="password" type="password" formControlName="password" class="input-fields">
+  </div>
 
-    <div>
-        <label for="password" class="labels">Password</label>
-        <input id="password" type="password" formControlName="password" class="input-fields">
-    </div>
-
-    <button class="button" type="submit">Save Changes</button>
-
+  <button class="button" type="submit" [disabled]="isGoogleUser">Save Changes</button>
 </form>
 
 <form [formGroup]="statusText">
-    <div>
-        <input id="text" type="text" formControlName="text" class="status-text">
-    </div>
+  <div>
+    <input id="text" type="text" formControlName="text" class="status-text">
+  </div>
 </form>
+
+<div>
+  <button class="button" (click)="logout()">Logout</button>
+</div>
