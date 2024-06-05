@@ -7,7 +7,9 @@ import { BehaviorSubject, delay, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private authUrl = 'http://localhost:8080/'; // Update this URL as per your server configuration
+
+  //private authUrl = 'http://localhost:8080/'; // Update this URL as per your server configuration
+  private authUrl = 'https://pricepinion.azurewebsites.net/'; // Update this URL as per your server configuration
   private userSubject: BehaviorSubject<any>;
   public user: Observable<any>;
 
